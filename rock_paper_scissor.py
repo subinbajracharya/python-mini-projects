@@ -11,19 +11,20 @@ while True:
         break
 
     if user_input not in options:
-        continue
+        print("Invalid choice!")
 
-    random_number = random.randint(0, 2)  # rock = 0, paper = 1, scissor = 2
-    computer_pick = options[random_number]
+    # random_number = random.randint(0, 2)  # rock = 0, paper = 1, scissor = 2
+    # computer_pick = options[random_number]
+    computer_pick = random.choice(options)
+    print(f"You picked {user_input}.")
     print(f"Computer picked {computer_pick}.")
 
-    if user_input == "rock" and computer_pick == "scissor":
-        print("You won!")
-        user_wins += 1
-    elif user_input == "paper" and computer_pick == "rock":
-        print("You won!")
-        user_wins += 1
-    elif user_input == "scissor" and computer_pick == "paper":
+    if user_input == computer_pick:
+        print("Tie!")
+    elif (
+            (user_input == "rock" and computer_pick == "scissor") or
+            (user_input == "paper" and computer_pick == "rock") or
+            (user_input == "scissor" and computer_pick == "paper")):
         print("You won!")
         user_wins += 1
     else:
@@ -32,4 +33,10 @@ while True:
 
 print(f"You won {user_wins} times.")
 print(f"The Computer won {computer_wins} times.")
-print("Goodbye!")
+
+if user_wins > computer_wins:
+    print("Well Played!")
+elif user_wins == computer_wins:
+    print("It's a tie game.")
+else:
+    print("Better luck next time!")
